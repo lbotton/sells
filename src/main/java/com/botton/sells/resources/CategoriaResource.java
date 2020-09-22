@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.botton.sells.domain.Categoria;
 
+//nome do pacote deve ser .resources (nao controller)
 @RestController
 //nome do conceito no plural
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
 
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Categoria> listar() {
 		Categoria cat1 = new Categoria(1, "Informatica");
