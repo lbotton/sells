@@ -13,6 +13,8 @@ public class CategoriaService {
   @Autowired
   private final CategoriaRepository repo;
 
+  private final CategoriaMapper categoriaMapper;
+
   public List<Categoria> findAll() {
     return (List<Categoria>) repo.findAll();
   }
@@ -25,12 +27,31 @@ public class CategoriaService {
     repo.deleteById(id);
   }
 
-  public Categoria save(Categoria c) {
+  public Categoria update(CategoriaDTO c, Long id) {
+    // if (!isValid(c)) {
+    // return null;
+    // }
+    Categoria categoria = categoriaMapper.map(c);
+    categoria.setId(id);
+    return repo.save(categoria);
+  }
+
+  public Categoria save(CategoriaDTO c) {
     // if (!isValid(c)) {
     // return null;
     // }
 
-    return repo.save(c);
+    return repo.save(categoriaMapper.map(c));
+  }
+
+  // use this method when our business logic needs to read the saved changes at a later point during
+  // the same transaction but before the commit.
+  public Categoria saveAndFlush(Categoria c) {
+    // if (!isValid(c)) {
+    // return null;
+    // }
+
+    return repo.saveAndFlush(c);
   }
 
 }
