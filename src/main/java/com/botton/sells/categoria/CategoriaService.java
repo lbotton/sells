@@ -2,7 +2,6 @@ package com.botton.sells.categoria;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
@@ -10,11 +9,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CategoriaService {
 
-  @Autowired
   private final CategoriaRepository repo;
 
-  @Autowired
-  private CategoriaMapper categoriaMapper;
+  private final CategoriaMapper categoriaMapper;
 
   public List<Categoria> findAll() {
     return (List<Categoria>) repo.findAll();
@@ -32,10 +29,10 @@ public class CategoriaService {
     // if (!isValid(c)) {
     // return null;
     // }
-    // Categoria categoria = categoriaMapper.map(c);
-    // categoria.setId(id);
-    // return repo.save(categoria);
-    return repo.save(new Categoria());
+    Categoria categoria = categoriaMapper.map(c);
+    categoria.setId(id);
+    return repo.save(categoria);
+    // return repo.save(new Categoria());
   }
 
   public Categoria save(CategoriaDTO c) {
@@ -43,8 +40,8 @@ public class CategoriaService {
     // return null;
     // }
 
-    // return repo.save(categoriaMapper.map(c));
-    return repo.save(new Categoria());
+    return repo.save(categoriaMapper.map(c));
+    // return repo.save(new Categoria());
   }
 
   // use this method when our business logic needs to read the saved changes at a later point during

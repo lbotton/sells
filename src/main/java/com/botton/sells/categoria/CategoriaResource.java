@@ -5,7 +5,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +26,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
 
-  @Autowired
-  private CategoriaService service;
+  private final CategoriaService service;
 
   // GET all
   @GetMapping()
