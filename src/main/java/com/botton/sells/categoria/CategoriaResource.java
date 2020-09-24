@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import lombok.AllArgsConstructor;
 
 // nome do pacote deve ser .resources (nao controller)
+@AllArgsConstructor
 @RestController
 // nome do conceito no plural
 @RequestMapping(value = "/categorias")
@@ -51,7 +53,8 @@ public class CategoriaResource {
     Categoria categoriaSalva = service.save(categoriaDTO);
     URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
         .buildAndExpand(categoriaSalva.getId()).toUri();
-    return ResponseEntity.created(location).build();
+    return ResponseEntity.created(location).build(); // create method should return 201 - Create
+                                                     // status code
   }
 
   // PUT

@@ -13,7 +13,8 @@ public class CategoriaService {
   @Autowired
   private final CategoriaRepository repo;
 
-  private final CategoriaMapper categoriaMapper;
+  @Autowired
+  private CategoriaMapper categoriaMapper;
 
   public List<Categoria> findAll() {
     return (List<Categoria>) repo.findAll();
@@ -31,9 +32,10 @@ public class CategoriaService {
     // if (!isValid(c)) {
     // return null;
     // }
-    Categoria categoria = categoriaMapper.map(c);
-    categoria.setId(id);
-    return repo.save(categoria);
+    // Categoria categoria = categoriaMapper.map(c);
+    // categoria.setId(id);
+    // return repo.save(categoria);
+    return repo.save(new Categoria());
   }
 
   public Categoria save(CategoriaDTO c) {
@@ -41,7 +43,8 @@ public class CategoriaService {
     // return null;
     // }
 
-    return repo.save(categoriaMapper.map(c));
+    // return repo.save(categoriaMapper.map(c));
+    return repo.save(new Categoria());
   }
 
   // use this method when our business logic needs to read the saved changes at a later point during

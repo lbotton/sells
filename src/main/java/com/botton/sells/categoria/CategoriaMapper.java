@@ -2,12 +2,17 @@ package com.botton.sells.categoria;
 
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
+@Component
 @Mapper(componentModel = "spring")
 public interface CategoriaMapper {
-  CategoriaDTO map(Categoria source);
+
+  Categoria map(CategoriaDTO source);
 
   @InheritInverseConfiguration
-  Categoria map(CategoriaDTO source);
+  CategoriaDTO map(Categoria source);
+
+
 
 }
